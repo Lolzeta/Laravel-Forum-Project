@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use Illuminate\Http\Request;
+use App\Http\Requests\RoomRequest;
 
 class RoomsController extends Controller
 {
@@ -14,7 +15,8 @@ class RoomsController extends Controller
      */
     public function index()
     {
-        return redirect('/');
+        $rooms = Room::paginate(10);
+        return view('public.rooms.index')->withRooms($rooms);
     }
 
     /**
@@ -33,29 +35,15 @@ class RoomsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomRequest $request)
     {
-        request()->validate([
-          'name'                        =>      'required|min:3',
-          'cathegory'                   =>      'required|min:10',
-          'creator'                     =>      'required|min:5',
-          'description'                 =>      'required|min:10'
-        ], [
-          'name.required'               =>      'El nombre de la sala es necesario',
-          'name.min'                    =>      'El nombre de la sala debe de contener como minimo tres caracteres',
-          'cathegory.required'          =>      'La categoria de la sala es necesaria',
-          'cathegory.min'               =>      'La categoria debe de contener como minimo diez caracteres',
-          'creator.required'            =>      'El creador de la sala es necesario',
-          'creator.min'                 =>      'El creador de la sala debe contener minimo cinco caracteres',
-          'description.required'        =>      'La descripcion de la sala es necesario',
-          'description.min'             =>      'La descripcion de la sala debe de contener minimo diez caracteres'
-        ]);
         Room::create([
           'name'        =>    request('name'),
           'slug'        =>    str_slug(request('name'),'-'),
           'cathegory'   =>    request('cathegory'),
           'creator'     =>    request('creator'),
-          'description' =>    request('description')
+          'description' =>    request('description'),
+          'votes'       =>    0
         ]);
         return redirect('/');
     }
@@ -90,29 +78,15 @@ class RoomsController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Room $room)
+    public function update(RoomRequest $request, Room $room)
     {
-      request()->validate([
-        'name'                        =>      'required|min:3',
-        'cathegory'                   =>      'required|min:10',
-        'creator'                     =>      'required|min:5',
-        'description'                 =>      'required|min:10'
-      ], [
-        'name.required'               =>      'El nombre de la sala es necesario',
-        'name.min'                    =>      'El nombre de la sala debe de contener como minimo tres caracteres',
-        'cathegory.required'          =>      'La categoria de la sala es necesaria',
-        'cathegory.min'               =>      'La categoria debe de contener como minimo diez caracteres',
-        'creator.required'            =>      'El creador de la sala es necesario',
-        'creator.min'                 =>      'El creador de la sala debe contener minimo cinco caracteres',
-        'description.required'        =>      'La descripcion de la sala es necesario',
-        'description.min'             =>      'La descripcion de la sala debe de contener minimo diez caracteres'
-      ]);
       $room->update([
         'name'         =>     request('name'),
         'slug'         =>     str_slug(request('name'),'-'),
         'cathegory'    =>     request('cathegory'),
         'creator'      =>     request('creator'),
-        'description'  =>     request('description')
+        'description'  =>     request('description'),
+        'votes'        =>     old('votes')
       ]);
 
       return redirect('/rooms/'.$room->slug);

@@ -9,9 +9,4 @@
     @method('patch')
 
     @include('public.rooms.partials.form')
-
-
-
-    <button type="submit" class="btn btn-primary">Edit Room</button>
-    </form>
   @endsection

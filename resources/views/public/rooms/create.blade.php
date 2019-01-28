@@ -8,8 +8,5 @@
     @csrf
 
     @include('public.rooms.partials.form')
-
-
-    <button type="submit" class="btn btn-primary">Create Room</button>
-</form>
+    
 @endsection

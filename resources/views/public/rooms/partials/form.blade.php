@@ -34,3 +34,6 @@
         </div>
         @endif
     </div>
+
+    <button type="submit" id="saveRoom"class="btn btn-primary">Save Room</button>
+</form>

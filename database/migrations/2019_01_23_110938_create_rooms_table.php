@@ -18,7 +18,8 @@ class CreateRoomsTable extends Migration
             $table->string('name');
             $table->string('creator');
             $table->string('cathegory');
-            $table->string('description');
+            $table->text('description');
+            $table->integer('votes')->default(0);
             $table->timestamps();
         });
     }
