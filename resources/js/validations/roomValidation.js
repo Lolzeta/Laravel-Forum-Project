@@ -2,82 +2,82 @@ document.addEventListener('DOMContentLoaded',function(){
   let boton = document.getElementById('saveRoom');
   boton.addEventListener('click',function(event){
     event.preventDefault();
-    if(validateNameExist() && validateLenghtName() && validateLenghtCreator() && validateCreatorExist() && validateCathegoryExist() && validateLenghtCathegory() && validateDescriptionExist() && validateLenghtDescription()){
-      checkAllValidations();
+    if(validateNameExist() && validateLengthName() && validateLengthCreator() && validateCreatorExist() && validateCathegoryExist() && validateLengthCathegory() && validateDescriptionExist() && validateLengthDescription()){
+      document.getElementById("saveForm").submit();
     } else{
-      event.submit();
+      checkAllValidations();
     }
   })
 })
 
-function validateLenghtName(){
+function validateLengthName(){
   let validated = false;
-  let name = document.getElementById('name').value;
-  if(name>=3){
+  let name = trim(document.getElementById('name').value);
+  if(name.length>=3){
     validated = true;
   }
   return validated
 }
 
 function validateNameExist(){
-  let validated = false;
-  let name = document.getElementById('name').value;
+  let validated = true;
+  let name = trim(document.getElementById('name').value);
   if(name===""){
-    validated = true;
+    validated = false;
   }
   return validated;
 }
 
-function validateLenghtCathegory(){
+function validateLengthCathegory(){
   let validated = false;
-  let cathegory = document.getElementById('cathegory').value;
-  if(cathegory>=5){
+  let cathegory = trim(document.getElementById('cathegory').value);
+  if(cathegory.length>=5){
     validated = true;
   }
   return validated
 }
 
 function validateCathegoryExist(){
-  let validated = false;
-  let cathegory = document.getElementById('cathegory').value;
+  let validated = true;
+  let cathegory = trim(document.getElementById('cathegory').value);
   if(cathegory===""){
-    validated = true;
+    validated = false;
   }
   return validated;
 }
 
-function validateLenghtCreator(){
+function validateLengthCreator(){
   let validated = false;
-  let creator = document.getElementById('creator').value;
-  if(creator>=5){
+  let creator = trim(document.getElementById('creator').value);
+  if(creator.length>=5){
     validated = true;
   }
   return validated
 }
 
 function validateCreatorExist(){
-  let validated = false;
-  let creator = document.getElementById('creator').value;
+  let validated = true;
+  let creator = trim(document.getElementById('creator').value);
   if(creator===""){
-    validated = true;
+    validated = false;
   }
   return validated;
 }
 
-function validateLenghtDescription(){
+function validateLengthDescription(){
   let validated = false;
-  let description = document.getElementById('description').value;
-  if(description>=10){
+  let description = trim(document.getElementById('description').value);
+  if(description.length>=10){
     validated = true;
   }
   return validated
 }
 
 function validateDescriptionExist(){
-  let validated = false;
-  let description = document.getElementById('description').value;
+  let validated = true;
+  let description = trim(document.getElementById('description').value);
   if(description===""){
-    validated = true;
+    validated = false;
   }
   return validated;
 }
@@ -88,7 +88,7 @@ function checkAllValidations(){
   let validatedCreator = true;
   let validatedCathegory = true;
   let validatedDescription = true;
-  if(!validateNameExist){
+  if(!validateNameExist()){
     if(!document.getElementById('nameError')){
       let error = document.createElement('div');
       error.setAttribute('id','nameError');
@@ -102,7 +102,7 @@ function checkAllValidations(){
     validatedName = false;
   }
 
-  if(!validateLenghtName){
+  if(!validateLengthName()){
     if(!document.getElementById('nameError')){
       let error = document.createElement('div');
       error.setAttribute('id','nameError');
@@ -116,7 +116,7 @@ function checkAllValidations(){
     validatedName = false;
   }
 
-  if(!validateCreatorExist){
+  if(!validateCreatorExist()){
     if(!document.getElementById('creatorError')){
       let error = document.createElement('div');
       error.setAttribute('id','creatorError');
@@ -130,7 +130,7 @@ function checkAllValidations(){
     validatedCreator = false;
   }
 
-  if(!validateLenghtCreator){
+  if(!validateLengthCreator()){
     if(!document.getElementById('creatorError')){
       let error = document.createElement('div');
       error.setAttribute('id','creatorError');
@@ -144,7 +144,7 @@ function checkAllValidations(){
     validatedCreator = false;
   }
 
-  if(!validateCathegoryExist){
+  if(!validateCathegoryExist()){
     if(!document.getElementById('cathegoryError')){
       let error = document.createElement('div');
       error.setAttribute('id','cathegoryError');
@@ -158,7 +158,7 @@ function checkAllValidations(){
     validatedCathegory = false;
   }
 
-  if(!validateLenghtCathegory){
+  if(!validateLengthCathegory()){
     if(!document.getElementById('cathegoryError')){
       let error = document.createElement('div');
       error.setAttribute('id','cathegoryError');
@@ -172,7 +172,7 @@ function checkAllValidations(){
     validatedCathegory = false;
   }
 
-  if(!validateDescriptionExist){
+  if(!validateDescriptionExist()){
     if(!document.getElementById('descriptionError')){
       let error = document.createElement('div');
       error.setAttribute('id','descriptionError');
@@ -186,7 +186,7 @@ function checkAllValidations(){
     validatedDescription = false;
   }
 
-  if(!validateLenghtDescription){
+  if(!validateLengthDescription()){
     if(!document.getElementById('descriptionError')){
       let error = document.createElement('div');
       error.setAttribute('id','descriptionError');
@@ -226,5 +226,5 @@ function checkAllValidations(){
     validated = true;
   }
     return validated;
-  }
+
 }

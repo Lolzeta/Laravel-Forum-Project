@@ -20,7 +20,7 @@
         <label for="cathegory">Cathegory</label>
         <input type="text" class="form-control {{$errors->has('cathegory')?"is-invalid":""}}" id="cathegory" name="cathegory" placeholder="Introduce the room's cathegory" required value='{{isset($room)?$room->cathegory:old('cathegory')}}'>
         @if($errors->has('cathegory'))
-        <div class="invalid-feedback">
+        <div class="invalid-feedback ">
           {{$errors->first('cathegory')}}
         </div>
         @endif
@@ -35,5 +35,11 @@
         @endif
     </div>
 
-    <button type="submit" id="saveRoom"class="btn btn-primary">Save Room</button>
+    <button type="submit" id="saveRoom" class="btn btn-primary">Save Room</button>
 </form>
+
+@push('scripts')
+
+<script src="{{ mix('/js/validations/roomValidation.js') }}" defer ></script>
+
+@endpush
