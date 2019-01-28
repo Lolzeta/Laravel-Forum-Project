@@ -1,4 +1,4 @@
-@extends('public.layout')
+@extends('layouts.app')
 
 @section('title', 'TestForums | New Room')
 
@@ -8,5 +8,5 @@
     @csrf
 
     @include('public.rooms.partials.form')
-    
+
 @endsection

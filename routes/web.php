@@ -18,3 +18,7 @@ Route::get('/about', 'PagesController@about')->name('about');
 
 // Routes for Room entities
 Route::resource('/rooms', 'RoomsController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

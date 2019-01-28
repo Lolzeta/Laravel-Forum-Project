@@ -1,4 +1,4 @@
-@extends('layout.blade')
+@extends('layouts.app')
 
 @section('title', 'TestForums | Contact')
 
