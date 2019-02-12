@@ -38,7 +38,9 @@
                             Rooms
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @auth
                             <a class="dropdown-item" href="{{ route('rooms.create') }}">Create</a>
+                            @endauth
                             <a class="dropdown-item" href="{{ route('rooms.index') }}">Rooms List</a>
                           </div>
                       </li>

@@ -39,9 +39,9 @@ class RoomsController extends Controller
     {
         Room::create([
           'name'        =>    request('name'),
+          'user_id'     =>    $request->user()->id,
           'slug'        =>    str_slug(request('name'),'-'),
-          'cathegory'   =>    request('cathegory'),
-          'creator'     =>    request('creator'),
+          'category'   =>     request('category'),
           'description' =>    request('description'),
           'votes'       =>    0
         ]);
@@ -83,8 +83,7 @@ class RoomsController extends Controller
       $room->update([
         'name'         =>     request('name'),
         'slug'         =>     str_slug(request('name'),'-'),
-        'cathegory'    =>     request('cathegory'),
-        'creator'      =>     request('creator'),
+        'category'     =>     request('category'),
         'description'  =>     request('description'),
         'votes'        =>     old('votes')
       ]);

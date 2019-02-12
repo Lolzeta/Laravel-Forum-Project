@@ -19,6 +19,9 @@ Route::get('/about', 'PagesController@about')->name('about');
 // Routes for Room entities
 Route::resource('/rooms', 'RoomsController');
 
+// Route for Message entities
+Route::resource('/messages', 'MessagesController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
