@@ -19,7 +19,6 @@ class CreateRoomsTable extends Migration
             $table->string('name');
             $table->string('category');
             $table->text('description');
-            $table->integer('votes')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

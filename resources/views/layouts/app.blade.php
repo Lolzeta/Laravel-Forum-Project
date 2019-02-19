@@ -57,7 +57,24 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#loginmodal">{{ __('Login') }}</a>
+                                <!-- Modal for login -->
+                                <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="loginmodal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @include('layouts.partials.loginmodal')
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">

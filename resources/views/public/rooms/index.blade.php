@@ -15,7 +15,6 @@
         <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">{{ $room->user->name}}</h6>
             <p class="card-text">{{ str_limit($room->description, 300) }}</p>
-            <p class="card-text">Votes: {{$room->votes}}</p>
 
             @include('public.rooms.partials.buttons')
             <a href="/rooms/{{ $room->slug }}" class="btn btn-primary btn-sm mr-2 float-right">More Info</a>

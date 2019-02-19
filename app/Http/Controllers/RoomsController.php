@@ -8,6 +8,18 @@ use App\Http\Requests\RoomRequest;
 
 class RoomsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => ['create' , 'store', 'edit', 'update', 'destroy']
+        ]);
+        
+          $this->middleware('can:manipulate,room', [
+             'only'  =>  ['edit', 'update','destroy']
+          ]);
+        
+    }
     /**
      * Display a listing of the resource.
      *

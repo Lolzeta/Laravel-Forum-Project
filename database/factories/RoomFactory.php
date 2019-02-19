@@ -9,7 +9,6 @@ $factory->define(App\Room::class, function (Faker $faker) {
         'name'        =>    $name,
         'slug'        =>    str_slug($name,'-'),
         'category'    =>    $faker->word(),
-        'description' =>    $faker->text(300),
-        'votes'       =>    $faker->numberBetween(-10000,20000)
+        'description' =>    $faker->text(300)
     ];
 });

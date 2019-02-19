@@ -3,6 +3,6 @@
 <form action="/rooms/{{ $room->id }}" method="post" class="mr-2 float-right">
     @csrf
     @method('delete')
-    <button type="submit" class="btn btn-danger btn-sm">Delete Book</button>
+    <button type="submit" class="btn btn-danger btn-sm">Delete Room</button>
 </form>
 @endauth
