@@ -22,10 +22,6 @@ class MessagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +31,12 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = Message::create([
+            'user_id'   =>  $request->user()->id,
+            'room_id'   =>  request('room_id'),
+            'message'   =>  request('message')
+        ]);
+        return view('public.messages.show', ['message' => $message]);
     }
 
     /**
@@ -67,9 +68,13 @@ class MessagesController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Message $message)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        $message = Message::where('id', $id)->first();
+        $message->update([
+            'message'   => request('message')
+          ]);
+          return view('public.messages.show', ['message' => $message]);
     }
 
     /**
@@ -78,8 +83,10 @@ class MessagesController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($id)
     {
-        //
+      $message = Message::where('id', $id)->first();
+      $message->delete();
+      return 'Message '.$id.' has been deleted.';
     }
 }

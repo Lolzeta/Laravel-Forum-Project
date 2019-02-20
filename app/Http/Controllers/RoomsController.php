@@ -54,8 +54,7 @@ class RoomsController extends Controller
           'user_id'     =>    $request->user()->id,
           'slug'        =>    str_slug(request('name'),'-'),
           'category'   =>     request('category'),
-          'description' =>    request('description'),
-          'votes'       =>    0
+          'description' =>    request('description')
         ]);
         return redirect('/');
     }

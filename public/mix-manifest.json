@@ -1,5 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/messages/create.js": "/js/messages/create.js",
+    "/js/messages/delete.js": "/js/messages/delete.js",
+    "/js/messages/edit.js": "/js/messages/edit.js",
+    "/js/messages/paginate.js": "/js/messages/paginate.js",
     "/js/validations/roomValidation.js": "/js/validations/roomValidation.js"
 }
