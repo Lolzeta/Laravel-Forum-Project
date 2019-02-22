@@ -21,6 +21,7 @@ Route::resource('/rooms', 'RoomsController');
 
 // Route for Message entities
 Route::resource('/messages', 'MessagesController');
+Route::get('/messages/data/{idMessage}', 'MessagesController@returnMessage');
 
 Auth::routes();
 

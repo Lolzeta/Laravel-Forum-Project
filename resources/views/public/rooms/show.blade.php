@@ -34,8 +34,5 @@
 @endauth
 @endsection
 @push('scripts')
-<script src="{{ mix('/js/messages/create.js')  }}" defer></script>
-<script src="{{ mix('/js/messages/delete.js')  }}" defer></script>
-<script src="{{ mix('/js/messages/edit.js')  }}" defer></script>
-<script src="{{ mix('/js/messages/paginate.js')  }}" defer></script>
+<script src="{{ mix('/js/messages/crudMessages.js')  }}" defer></script>
 @endpush

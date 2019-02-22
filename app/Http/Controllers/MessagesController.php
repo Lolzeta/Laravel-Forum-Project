@@ -47,7 +47,7 @@ class MessagesController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        
     }
 
     /**
@@ -88,5 +88,10 @@ class MessagesController extends Controller
       $message = Message::where('id', $id)->first();
       $message->delete();
       return 'Message '.$id.' has been deleted.';
+    }
+
+    public function returnMessage($id){
+        $message = Message::where('id', $id)->first();
+        return $message->message;
     }
 }

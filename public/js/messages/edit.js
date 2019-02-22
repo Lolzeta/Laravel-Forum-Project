@@ -94,20 +94,34 @@
 /***/ (function(module, exports) {
 
 $(function () {
-  var accept = $('#accept-edit');
+  $("form[data-action='edit']").on('submit', function (event) {
+    editEvent(event);
+  });
+});
+
+function showModal(id) {
+  $("#".concat(id)).modal('show');
+}
+
+function closeModal(id) {
+  $("#".concat(id)).modal('hide');
+}
+
+function editEvent(event) {
+  event.preventDefault();
+  showModal('edit-confirmation');
+  var form = $(event.target);
+  var idMessage = form.attr("data-messagetoedit");
+  var accept = $("#accept-edit");
   accept.click(function () {
-    var idMessage = $('#accept-edit').attr('data-messagetoedit');
     axios.put("/messages/".concat(idMessage), {
       message: $('#editedMessage').val()
     }).then(function (respond) {
       closeModal('edit-confirmation');
+      accept.off('click');
       $("div[data-idMessage='".concat(idMessage, "']")).html(respond.data);
     });
   });
-});
-
-function closeModal(id) {
-  $("#".concat(id)).modal('hide');
 }
 
 /***/ }),
