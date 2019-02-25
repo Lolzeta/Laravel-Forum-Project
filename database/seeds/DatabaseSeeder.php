@@ -13,5 +13,10 @@ class DatabaseSeeder extends Seeder
     {   factory(App\User::class,4)->create();
         factory(App\Room::class,20)->create();
         factory(App\Message::class,60)->create();
+        factory(App\User::class)->create([
+            'name'  => 'admin',
+            'role'  => 'admin',
+            'email' => 'admin@testforums.com'
+        ]);
     }
 }

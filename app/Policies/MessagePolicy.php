@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\User;
-use App\Room;
+use App\Message;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RoomPolicy
+class MessagePolicy
 {
     use HandlesAuthorization;
 
@@ -14,8 +14,8 @@ class RoomPolicy
         if( $user->role == 'admin' ) return true;
     }
     
-    public function manipulate(User $user, Room $room)
+    public function manipulate(User $user, Message $message)
     {
-        return $room->user_id == $user->id || $user->role == 'admin';
+        return $message->user_id == $user->id || $user->role == 'admin';
     }
 }

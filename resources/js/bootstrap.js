@@ -54,3 +54,9 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+
+
+
+//Mis librerias
+window.quill = require('quill');
