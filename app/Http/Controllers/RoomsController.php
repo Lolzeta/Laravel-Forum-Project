@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\Community;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoomRequest;
 
@@ -15,9 +16,9 @@ class RoomsController extends Controller
             'only' => ['create' , 'store', 'edit', 'update', 'destroy']
         ]);
         
-          $this->middleware('can:manipulate,room', [
+        $this->middleware('can:manipulate,room', [
              'only'  =>  ['edit', 'update','destroy']
-          ]);
+        ]);
         
     }
     /**
@@ -40,7 +41,8 @@ class RoomsController extends Controller
      */
     public function create()
     {
-        return view('public.rooms.create');
+        $communities = Community::all();
+        return view('public.rooms.create', ['communities' => $communities]);
     }
 
     /**
@@ -55,7 +57,7 @@ class RoomsController extends Controller
           'name'        =>    request('name'),
           'user_id'     =>    $request->user()->id,
           'slug'        =>    str_slug(request('name'),'-'),
-          'category'   =>     request('category'),
+          'community_id'   => request('community'),
           'description' =>    request('description')
         ]);
         return redirect('/');
@@ -81,7 +83,11 @@ class RoomsController extends Controller
      */
     public function edit(Room $room)
     {
-        return view('public.rooms.edit', ['room' => $room]);
+        $communities = Community::all();
+        return view('public.rooms.edit', [
+            'room' => $room,
+            'communities' => $communities
+            ]);
     }
 
     /**
@@ -96,7 +102,7 @@ class RoomsController extends Controller
       $room->update([
         'name'         =>     request('name'),
         'slug'         =>     str_slug(request('name'),'-'),
-        'category'     =>     request('category'),
+        'community_id'     => request('community'),
         'description'  =>     request('description'),
         'votes'        =>     old('votes')
       ]);

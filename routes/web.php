@@ -26,3 +26,7 @@ Route::get('/messages/data/{idMessage}', 'MessagesController@returnMessage');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Route for Community entities
+Route::resource('/communities', 'CommunitiesController');

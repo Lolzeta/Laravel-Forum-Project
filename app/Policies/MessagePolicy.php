@@ -18,4 +18,5 @@ class MessagePolicy
     {
         return $message->user_id == $user->id || $user->role == 'admin';
     }
+    
 }

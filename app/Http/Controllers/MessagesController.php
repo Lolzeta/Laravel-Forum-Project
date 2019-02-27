@@ -14,9 +14,9 @@ class MessagesController extends Controller
             'only' => ['create' , 'store', 'edit', 'update', 'destroy']
         ]);
         
-          $this->middleware('can:manipulate,message', [
-             'only'  =>  ['edit', 'update','destroy']
-          ]);
+        $this->middleware('can:manipulate,message', [
+             'only'  =>  ['edit','update','destroy']
+        ]);
         
     }
 
