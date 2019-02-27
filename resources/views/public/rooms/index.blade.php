@@ -10,7 +10,7 @@
 
     <div class="card mb-2">
         <div class="card-header">
-            <b>{{ $room->name }}  |  {{$room->category}}</b>
+            <b>{{ $room->name }}  |  {{$room->community->name}}</b>
         </div>
         <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">{{ $room->user->name}}</h6>

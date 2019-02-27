@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSlugToRoomsTable extends Migration
+class AddCommunityIdFieldToRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddSlugToRoomsTable extends Migration
     public function up()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->string('slug')->after('name');
+            $table->integer('community_id')->unsigned()->after('user_id');
+
+            $table->foreign('community_id')->references('id')->on('communities')->onDelete('cascade');
         });
     }
 
@@ -26,7 +28,8 @@ class AddSlugToRoomsTable extends Migration
     public function down()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->dropColumn('slug');
+            $table->dropForeign(['community_id']);
+            $table->dropColumn('community_id');
         });
     }
 }

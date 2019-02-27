@@ -3,7 +3,7 @@
 @section('title', 'TestForums | {{room->name}}')
 
 @section('content')
-    <h2>{{ $room->name }}</h2>
+    <h2>{{ $room->name}} || {{$room->community->name}}</h2>
     <h4>{{ $room->user->name}}</h4>
     <p>{{ $room->description }}</p>
     <hr>

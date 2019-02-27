@@ -36,7 +36,9 @@ class User extends Authenticatable
       return $this->hasMany(Message::class);
     }
 
-    public function users(){
-      return $this->belongsToMany(Role::class);
+    public function communities(){
+      return $this->hasMany(Community::class);
     }
+
+
 }

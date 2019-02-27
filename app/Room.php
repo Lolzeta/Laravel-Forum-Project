@@ -15,4 +15,8 @@ class Room extends Model
     public function messages(){
       return $this->hasMany(Message::class);
     }
+
+    public function community(){
+      return $this->belongsTo(Community::class);
+    }
 }

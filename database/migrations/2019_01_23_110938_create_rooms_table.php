@@ -16,13 +16,18 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('community_id')->unsigned();
             $table->string('name');
+            $table->string('slug');
             $table->text('description');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('community_id')->references('id')->on('communities')->onDelete('cascade');
+
+             // To implement
+            //$table->integer('valoration');
+            //$table->boolean('new');
+            //$table->boolean('best');
+            //$table->boolean('hot');
         });
     }
 

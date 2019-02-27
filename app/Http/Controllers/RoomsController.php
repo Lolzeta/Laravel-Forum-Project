@@ -26,9 +26,11 @@ class RoomsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $rooms = Room::paginate(10);
-        return view('public.rooms.index')->withRooms($rooms);
+        return view('public.rooms.index', [
+            'rooms' => $rooms
+        ]);
     }
 
     /**
