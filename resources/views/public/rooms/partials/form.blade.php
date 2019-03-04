@@ -35,9 +35,3 @@
 
     <button type="submit" id="saveRoom" class="btn btn-primary">Save Room</button>
 </form>
-
-@push('scripts')
-
-<script src="{{ mix('/js/validations/roomValidation.js') }}" defer ></script>
-
-@endpush

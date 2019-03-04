@@ -4,17 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Community;
 use Illuminate\Http\Request;
+use App\Http\Requests\CommunityRequest;
 
 class CommunitiesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => ['create' , 'store', 'edit', 'update', 'destroy']
+        ]);
+        
+        $this->middleware('can:manipulate,room', [
+             'only'  =>  ['edit', 'update','destroy']
+        ]);
+        
+    }
+
     public function index()
     {
-        //
+        $communities = Community::paginate(10);
+        return view('public.communities.index', [
+            'communities' => $communities
+        ]);
     }
 
     /**
@@ -24,7 +35,7 @@ class CommunitiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('public.communities.create');
     }
 
     /**
@@ -33,9 +44,15 @@ class CommunitiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommunityRequest $request)
     {
-        //
+        Community::create([
+            'name'        =>    request('name'),
+            'user_id'     =>    $request->user()->id,
+            'slug'        =>    str_slug(request('name'),'-'),
+            'description' =>    request('description')
+          ]);
+          return redirect('/');
     }
 
     /**

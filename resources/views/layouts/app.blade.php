@@ -50,6 +50,18 @@
                             <a class="dropdown-item" href="{{ route('rooms.index') }}">Rooms List</a>
                           </div>
                       </li>
+
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Communities
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @auth
+                            <a class="dropdown-item" href="{{ route('communities.create') }}">Create</a>
+                            @endauth
+                            <a class="dropdown-item" href="{{ route('communities.index') }}">Rooms List</a>
+                          </div>
+                      </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

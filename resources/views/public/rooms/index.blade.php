@@ -7,7 +7,7 @@
   {{$rooms->links()}}
 </div>
 @forelse($rooms as $room)
-
+  
     <div class="card mb-2">
         <div class="card-header">
             <b>{{ $room->name }}  |  {{$room->community->name}}</b>
@@ -18,10 +18,9 @@
 
             @include('public.rooms.partials.buttons')
             <a href="/rooms/{{ $room->slug }}" class="btn btn-primary btn-sm mr-2 float-right">More Info</a>
-
-
       </div>
     </div>
+  
     @empty
       <p>We don't have rooms. Sorry!</p>
     @endforelse
