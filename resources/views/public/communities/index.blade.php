@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="d-flex justify-content-center">
-  {{$communities->links()}}
+  <h1>Our communities!</h1>
 </div>
 @forelse($communities as $community)
 

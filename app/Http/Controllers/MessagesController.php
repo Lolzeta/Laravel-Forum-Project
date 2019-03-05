@@ -47,7 +47,7 @@ class MessagesController extends Controller
         $message = Message::create([
             'user_id'   =>  $request->user()->id,
             'room_id'   =>  request('room_id'),
-            'message'   =>  request('message')
+            'message'   =>  htmlentities(request('message'))
         ]);
         return view('public.messages.show', ['message' => $message]);
     }

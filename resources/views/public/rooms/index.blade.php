@@ -4,13 +4,13 @@
 
 @section('content')
 <div class="d-flex justify-content-center">
-  {{$rooms->links()}}
+  <h1>All rooms in our page</h1>
 </div>
 @forelse($rooms as $room)
   
     <div class="card mb-2">
         <div class="card-header">
-            <b>{{ $room->name }}  |  {{$room->community->name}}</b>
+            <b>{{ $room->name }}  |  <a href="/communities/{{$room->community->slug}}" title="Visit community">{{$room->community->name}}</a></b>
         </div>
         <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">{{ $room->user->name}}</h6>

@@ -14,7 +14,7 @@ class CommunitiesController extends Controller
             'only' => ['create' , 'store', 'edit', 'update', 'destroy']
         ]);
         
-        $this->middleware('can:manipulate,room', [
+        $this->middleware('can:manipulate,community', [
              'only'  =>  ['edit', 'update','destroy']
         ]);
         
@@ -61,9 +61,14 @@ class CommunitiesController extends Controller
      * @param  \App\Community  $community
      * @return \Illuminate\Http\Response
      */
-    public function show(Community $community)
-    {
-        //
+    public function show($slug)
+    {   
+        $community = Community::where('slug',$slug)->firstOrFail();
+        $rooms = $community->rooms()->paginate(10);
+        return view('public.communities.show',[
+            'community' => $community,
+            'rooms' =>  $rooms
+            ]);
     }
 
     /**
@@ -74,7 +79,9 @@ class CommunitiesController extends Controller
      */
     public function edit(Community $community)
     {
-        //
+        return view('public.communities.edit', [
+            'community' => $community
+        ]);
     }
 
     /**
@@ -84,9 +91,14 @@ class CommunitiesController extends Controller
      * @param  \App\Community  $community
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Community $community)
+    public function update(CommunityRequest $request, Community $community)
     {
-        //
+        $community->update([
+            'name'        =>    request('name'),
+            'slug'        =>    str_slug(request('name'),'-'),
+            'description' =>    request('description')
+        ]);
+        return redirect('/communities/'.$community->slug);
     }
 
     /**
@@ -97,6 +109,7 @@ class CommunitiesController extends Controller
      */
     public function destroy(Community $community)
     {
-        //
+        $community->delete();
+        return redirect('/communities/');
     }
 }

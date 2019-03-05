@@ -2,7 +2,10 @@ $(function () {
   var creation = $('#saveForm');
   creation.submit(function (e) {
     e.preventDefault();
-    axios.post('/messages/', $(this).serialize()).then(function (respond) {
+    axios.post('/messages/', {
+      room_id: $('#room_id').val(),
+      message: $('#message').val()
+    }).then(function (respond) {
       $('#messages').append(respond.data);
       $('#message').val('');
       $("form[data-action='delete']").last().submit(function (e) {

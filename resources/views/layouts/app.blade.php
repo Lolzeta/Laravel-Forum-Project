@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md {{Auth::check()?"navbar-dark bg-dark":"navbar-light"}} navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <i class="fas fa-vial"></i>{{ config('app.name', 'Laravel') }}
@@ -59,7 +59,7 @@
                             @auth
                             <a class="dropdown-item" href="{{ route('communities.create') }}">Create</a>
                             @endauth
-                            <a class="dropdown-item" href="{{ route('communities.index') }}">Rooms List</a>
+                            <a class="dropdown-item" href="{{ route('communities.index') }}">Explore Communities</a>
                           </div>
                       </li>
                     </ul>
@@ -122,7 +122,6 @@
                 </div>
             </div>
         </nav>
-
         <div class="container">
           <main class="py-4">
               @yield('content')
