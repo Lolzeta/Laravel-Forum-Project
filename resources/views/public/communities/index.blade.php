@@ -9,7 +9,7 @@
 @forelse($communities as $community)
 
     <div class="card mb-2">
-        <div class="card-header">
+        <div class="card-header bg-primary ">
             <b>{{ $community->name }}</b>
         </div>
         <div class="card-body">
@@ -17,9 +17,7 @@
             <p class="card-text">{{ str_limit($community->description, 300) }}</p>
 
             @include('public.communities.partials.buttons')
-            <a href="/communities/{{ $community->slug }}" class="btn btn-primary btn-sm mr-2 float-right">More Info</a>
-
-
+            <a href="/communities/{{ $community->slug }}" class="btn btn-primary btn-sm mr-2 float-right">Visit community</a>
       </div>
     </div>
     @empty

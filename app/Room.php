@@ -19,4 +19,8 @@ class Room extends Model
     public function community(){
       return $this->belongsTo(Community::class);
     }
+
+    public function votes(){
+      return $this->belongsToMany(Vote::class);
+    }
 }

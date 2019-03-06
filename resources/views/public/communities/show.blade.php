@@ -34,13 +34,22 @@
         <div class="card-header bg-primary rounded-0">
             <b>{{ $room->name }}</b>
         </div>
+        
         <div class="card-body rounded-0">
+          <div class="row">
+            <div class="col-1 d-flex align-items-center justify-content-center">
+              <h4>{{$room->votes->sum('valoration')}}</h4>
+            </div>
+
+            <div class="col">
             <h6 class="card-subtitle mb-2 text-muted">{{ $room->user->name}}</h6>
             <p class="card-text">{{ str_limit($room->description, 300) }}</p>
 
             @include('public.rooms.partials.buttons')
             <a href="/rooms/{{ $room->slug }}" class="btn btn-primary btn-sm mr-2 float-right">More Info</a>
-      </div>
+            </div>
+          </div>
+        </div>
     </div>
   
     @empty
