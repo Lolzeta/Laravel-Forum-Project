@@ -53,14 +53,17 @@ class RoomsController extends Controller
      */
     public function store(RoomRequest $request)
     {
+        $image = $request->file('image');
+
         Room::create([
           'name'        =>    request('name'),
           'user_id'     =>    $request->user()->id,
           'slug'        =>    str_slug(request('name'),'-'),
           'community_id'   => request('community'),
-          'description' =>    request('description')
+          'description' =>    request('description'),
+          'cover'   =>  ($image?$image->store('images','public'):null)
         ]);
-        return redirect('/');
+        return redirect('/rooms');
     }
 
     /**
@@ -99,12 +102,17 @@ class RoomsController extends Controller
      */
     public function update(RoomRequest $request, Room $room)
     {
+        $image = $request->file('image');
+
+        if($image && $room->cover){
+            Storage::disk('public')->delete($room->image);
+        }
       $room->update([
         'name'         =>     request('name'),
         'slug'         =>     str_slug(request('name'),'-'),
         'community_id'     => request('community'),
         'description'  =>     request('description'),
-        'votes'        =>     old('votes')
+        'cover' =>  ($image?$image->store('images','public'):$room->image)
       ]);
 
       return redirect('/rooms/'.$room->slug);
@@ -118,8 +126,13 @@ class RoomsController extends Controller
      */
     public function destroy(Room $room)
     {
+        if($room->image){
+            Storage::disk('public')->delete($room->image);
+        }
+        $room->votes()->detach();
         $room->delete();
 
-        return redirect('/');
+        return redirect('/rooms')
+        ->with('message', "The room '{$room->name}' has been deleted.");
     }
 }

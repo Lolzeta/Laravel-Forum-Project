@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    protected $fillable = ['user_id','name', 'slug', 'category', 'description', 'votes'];
+    protected $fillable = ['user_id', 'community_id','name', 'slug', 'description', 'image'];
 
     public function user(){
       return $this->belongsTo(User::class);

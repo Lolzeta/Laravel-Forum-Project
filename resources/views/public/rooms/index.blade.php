@@ -11,6 +11,12 @@
         <div class="card-header bg-primary rounded-0">
             <b>{{ $room->name }}   |  <a class="text-dark" href="/communities/{{$room->community->slug}}" title="Visit community">{{$room->community->name}}</a></b></b>
         </div>
+
+        @if($room->image)
+          <div class="col-3">
+            <img class="img-fluid" src="http://testforums.test/storage/{{ $room->image }}" alt="">
+          </div>
+        @endif
         
         <div class="card-body rounded-0">
           <div class="row">

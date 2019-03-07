@@ -41,6 +41,12 @@
               <h4>{{$room->votes->sum('valoration')}}</h4>
             </div>
 
+            @if($room->image)
+            <div class="col-3">
+              <img class="img-fluid" src="http://testforums.test/storage/{{ $room->image }}" alt="">
+            </div>
+            @endif
+
             <div class="col">
             <h6 class="card-subtitle mb-2 text-muted">{{ $room->user->name}}</h6>
             <p class="card-text">{{ str_limit($room->description, 300) }}</p>

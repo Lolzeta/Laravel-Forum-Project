@@ -105,6 +105,7 @@ class MessagesController extends Controller
 
     public function returnMessage($id){
         $message = Message::where('id', $id)->first();
+        $message->votes()->detach();
         return $message->message;
     }
 }

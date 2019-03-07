@@ -14,7 +14,7 @@
       @foreach($communities as $community)
             <option value="{{ $community->id }}"
                 @if( !$errors->isEmpty() )
-                    {{ $community->id, old('community')?"selected":"" }}
+                    {{ $community->id==old('community')?"selected":"" }}
                 @elseif( isset($room) )
                     {{ $room->community->id==$community->id?"selected":"" }}
                 @endif
@@ -23,6 +23,21 @@
     </select>
   </div>
 </div>
+
+<div class="col">
+        <div class="form-group">
+            @if( isset($room) )
+            <img class="img-fluid" src="http://testforums.test/storage/{{ $room->image }}" alt="">
+            @endif
+            <label for="image">Image</label>
+            <input type="file" class="form-control-file mt-1 {{ $errors->has('image')?"is-invalid":"" }}" id="image" name="image">
+            @if( $errors->has('image'))
+            <div class="invalid-feedback">
+                {{ $errors->first('image') }}
+            </div>
+            @endif
+        </div>
+    </div>
     <div class="form-group">
         <label for="description">Description</label>
         <textarea class="form-control {{$errors->has('description')?"is-invalid":""}}" id="description" name="description" rows="3" placeholder="Room Description" required>{{isset($room)?$room->description:old('description')}}</textarea>
