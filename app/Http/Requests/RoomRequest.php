@@ -26,7 +26,7 @@ class RoomRequest extends FormRequest
         return [
           'name'                        =>      'required|min:3',
           'description'                 =>      'required|min:10',
-          'community_id'                   =>      'required|exists:communities'
+          'community'                =>         'required|exists:communities,id|exists:communities,name'
         ];
     }
 
@@ -36,8 +36,8 @@ class RoomRequest extends FormRequest
       'name.min'                    =>      'The :attribute need to have three characters or more',
       'description.required'        =>      'The :attribute is needed',
       'description.min'             =>      'The :attribute need to have ten characters or more',
-      'community_id.required'          =>      'The :attribute is needed',
-      'community_id.exists'            =>      'The :attribute doesnt exists'
+      'community.required'          =>      'The :attribute is needed',
+      'community.exists'            =>      'The :attribute doesnt exists'
       ];
     }
 
@@ -45,7 +45,7 @@ class RoomRequest extends FormRequest
       return [
       'name'        =>    'room name',
       'description' =>    'room description',
-      'community_id'   =>    'room community'
+      'community'   =>    'room community'
     ];
     }
 }

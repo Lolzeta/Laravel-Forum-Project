@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use App\Community;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoomRequest;
 
@@ -55,15 +56,15 @@ class RoomsController extends Controller
     {
         $image = $request->file('image');
 
-        Room::create([
+        $room = Room::create([
           'name'        =>    request('name'),
           'user_id'     =>    $request->user()->id,
           'slug'        =>    str_slug(request('name'),'-'),
           'community_id'   => request('community'),
           'description' =>    request('description'),
-          'cover'   =>  ($image?$image->store('images','public'):null)
+          'image'   =>        ($image?$image->store('images','public'):null)
         ]);
-        return redirect('/rooms');
+        return redirect('/rooms/'.$room->slug);
     }
 
     /**
@@ -102,17 +103,18 @@ class RoomsController extends Controller
      */
     public function update(RoomRequest $request, Room $room)
     {
+        dd($errors);
         $image = $request->file('image');
 
-        if($image && $room->cover){
+        if($image && $room->image){
             Storage::disk('public')->delete($room->image);
         }
       $room->update([
         'name'         =>     request('name'),
         'slug'         =>     str_slug(request('name'),'-'),
-        'community_id'     => request('community'),
+        'community_id'     => request('community_id'),
         'description'  =>     request('description'),
-        'cover' =>  ($image?$image->store('images','public'):$room->image)
+        'image' =>  ($image?$image->store('images','public'):$room->image)
       ]);
 
       return redirect('/rooms/'.$room->slug);

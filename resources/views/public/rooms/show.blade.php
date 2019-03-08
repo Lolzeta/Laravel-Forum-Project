@@ -31,6 +31,8 @@
     <div id="messages">
     @forelse($room->messages as $message)
     @include('public.messages.show')
+    @include('public.confirmations.delete')
+    @include('public.confirmations.edit')
     @empty
     <p>No replies</p>
     @endforelse
@@ -50,8 +52,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Send Message</button>
 </form>
-@include('public.confirmations.delete')
-@include('public.confirmations.edit')
 @endauth
 @endsection
 @push('scripts')

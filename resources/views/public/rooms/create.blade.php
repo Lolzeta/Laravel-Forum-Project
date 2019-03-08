@@ -3,7 +3,7 @@
 @section('title', 'TestForums | New Room')
 
 @section('content')
-<form action="/rooms" id="saveForm" method="post" novalidate>
+<form action="/rooms" id="saveForm" method="post"  enctype="multipart/form-data">
 
     @csrf
 

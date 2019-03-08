@@ -46,13 +46,13 @@ class CommunitiesController extends Controller
      */
     public function store(CommunityRequest $request)
     {
-        Community::create([
+        $community = Community::create([
             'name'        =>    request('name'),
             'user_id'     =>    $request->user()->id,
             'slug'        =>    str_slug(request('name'),'-'),
             'description' =>    request('description')
           ]);
-          return redirect('/');
+          return redirect('/communities/'.$community->slug);
     }
 
     /**
