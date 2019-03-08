@@ -14,9 +14,9 @@ class MessagesController extends Controller
             'only' => ['create' , 'store', 'edit', 'update', 'destroy']
         ]);
         
-        $this->middleware('can:manipulate,message', [
+        /*$this->middleware('can:manipulate,message', [
              'only'  =>  ['edit','update','destroy']
-        ]);
+        ]);*/
         
     }
 
@@ -25,23 +25,7 @@ class MessagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         $message = Message::create([
@@ -64,17 +48,6 @@ class MessagesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -83,11 +56,13 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        $this->authorize("manipulate",Message::class);
         $message = Message::where('id', $id)->first();
         $message->update([
-            'message'   => request('message')
+            'message'   => request('message'),
           ]);
           return view('public.messages.show', ['message' => $message]);
+        
     }
 
     /**
@@ -98,6 +73,7 @@ class MessagesController extends Controller
      */
     public function destroy($id)
     {
+      $this->authorize("manipulate",Message::class);
       $message = Message::where('id', $id)->first();
       $message->delete();
       return 'Message '.$id.' has been deleted.';

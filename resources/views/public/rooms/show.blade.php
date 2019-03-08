@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-center">
   <h1>Room {{$room->name}} from <a class="text-dark" href="/communities/{{$room->community->slug}}" title="Visit community">{{$room->community->name}}</a></h1>
 </div>
-<div class="card rounded-0">
+<div class="card rounded-0" id="room" data-id-room="{{$room->id}}">
         <div class="card-body rounded-0">
           <div class="row">
             <div class="col-1 d-flex align-items-center justify-content-center">
@@ -29,19 +29,12 @@
         </div>
     </div>
     <div id="messages">
-    @forelse($room->messages as $message)
-    @include('public.messages.show')
-    @include('public.confirmations.delete')
-    @include('public.confirmations.edit')
-    @empty
-    <p>No replies</p>
-    @endforelse
+      @include('public.messages.paginationMessages')
     </div>
     @auth
     <form action="/messages" id="saveForm" method="post" novalidate>
       @csrf
     <div class="form-group">
-        <input type="hidden" name="room_id" id="room_id" value="{{$room->id}}">
         <label for="message">New message</label>
         <textarea class="form-control {{$errors->has('message')?"is-invalid":""}}" id="message" name="message" rows="3" placeholder="You can reply here" required>{{isset($room)?$room->message:old('message')}}</textarea>
         @if($errors->has('message'))

@@ -76,7 +76,11 @@ class RoomsController extends Controller
     public function show($slug)
     {
         $room = Room::where('slug',$slug)->firstOrFail();
-        return view('public.rooms.show',['room' => $room]);
+        $messages = $room->messages->take(10);
+        return view('public.rooms.show',[
+            'room' => $room,
+            'messages' => $messages
+            ]);
     }
 
     /**
@@ -137,4 +141,16 @@ class RoomsController extends Controller
         return redirect('/rooms')
         ->with('message', "The room '{$room->name}' has been deleted.");
     }
+
+    public function paginateMessages($id,$count)
+	{
+        $room = Room::where('id', $id)->first();
+        $messages = $room->messages->slice($count)->take(10);
+        $view = "";
+        if(!empty($messages)){
+            $view = view('public.messages.paginationMessages', ['messages' => $messages]);
+        }
+        return $view;
+    
+	}
 }

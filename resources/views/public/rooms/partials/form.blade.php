@@ -22,12 +22,8 @@
         @endforeach
     </select>
   </div>
-  @if($errors->has('community'))
-    <div class="invalid-feedback">
-      {{$errors->first('community')}}
-    </div>
-  @endif
 </div>
+
 
 <div class="col">
         <div class="form-group">

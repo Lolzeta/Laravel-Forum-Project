@@ -29,6 +29,7 @@
             <p class="card-text">{{ str_limit($room->description, 300) }}</p>
 
             @include('public.rooms.partials.buttons')
+            <a href="/rooms/{{ $room->slug }}" class="btn btn-primary btn-sm mr-2 float-right">More Info</a>
             </div>
           </div>
         </div>

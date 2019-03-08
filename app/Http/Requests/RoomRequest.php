@@ -26,7 +26,7 @@ class RoomRequest extends FormRequest
         return [
           'name'                        =>      'required|min:3',
           'description'                 =>      'required|min:10',
-          'community'                =>         'required|exists:communities,id|exists:communities,name'
+          'community'                =>         'required|exists:communities,id'
         ];
     }
 

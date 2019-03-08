@@ -3,7 +3,7 @@ $(function () {
   creation.submit(function (e) {
     e.preventDefault();
     axios.post('/messages/', {
-      room_id: $('#room_id').val(),
+      room_id: $("room").attr('data-id-room'),
       message: $('#message').val()
     }).then(function (respond) {
       $('#messages').append(respond.data);
@@ -17,8 +17,27 @@ $(function () {
     });
   });
 });
-$(function () {
-  $(window).scroll(function () {});
+document.addEventListener('DOMContentLoaded', function () {
+  var id = $("#room").attr('data-id-room');
+  var count = 10;
+  var ejecutar = true;
+  $(window).on("scroll", function () {
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+
+    if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+      axios.get("/rooms/paginateMessages/".concat(id, "/").concat(count)).then(function (response) {
+        if (ejecutar) {
+          if (response === "") {
+            ejecutar = false;
+          }
+
+          $("#messages").append(response.data);
+          count += 10;
+        }
+      });
+    }
+  });
 });
 $(function () {
   $("form[data-action='delete']").on('submit', function (event) {

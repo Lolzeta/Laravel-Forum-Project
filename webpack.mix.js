@@ -14,10 +14,6 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .js('resources/js/validations/roomValidation.js', 'public/js/validations/')
-   //.js('resources/js/messages/create.js', 'public/js/messages/')
-   //.js('resources/js/messages/paginate.js', 'public/js/messages/')
-   //.js('resources/js/messages/delete.js', 'public/js/messages/')
-   //.js('resources/js/messages/edit.js', 'public/js/messages/')
     .babel([
       'resources/js/messages/create.js',
       'resources/js/messages/paginate.js',

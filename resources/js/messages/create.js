@@ -3,7 +3,7 @@ $(function(){
     creation.submit(function(e){
         e.preventDefault();
         axios.post('/messages/', {
-          room_id : $('#room_id').val(),  
+          room_id : $("room").attr('data-id-room'),  
           message : $('#message').val()
         }).then(function(respond){
             $('#messages').append(respond.data);
