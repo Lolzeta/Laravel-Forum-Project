@@ -24,15 +24,24 @@ function editEvent(event){
   showModal('edit-confirmation', idMessage);
   let accept = $("#accept-edit");
   accept.click(function(){
+    accept.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
     axios.put(`/messages/${idMessage}` , {
       message : $('#editedMessage').val()
       }).then(function(respond){
+      accept.html('YES');
       closeModal('edit-confirmation');
       accept.off('click');
       $(`div[data-idMessage='${idMessage}']`).html(respond.data);
       $(`form[data-messagetoedit=${idMessage}]`).submit(function(e){
         editEvent(e);
       });
+      $(`form[data-messagetodelete=${idMessage}]`).submit(function(e){
+        deleteEvent(e);
+      });
+    }).catch(function (error) {
+      console.log(error);
+    }).then(function(){
+      alert('The message has been edited');
     });
   });
 }

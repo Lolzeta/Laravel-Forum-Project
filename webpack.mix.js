@@ -13,11 +13,11 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
-   .js('resources/js/validations/roomValidation.js', 'public/js/validations/')
     .babel([
       'resources/js/messages/create.js',
       'resources/js/messages/paginate.js',
       'resources/js/messages/delete.js',
       'resources/js/messages/edit.js',
+      'resources/js/messages/show.js',
     ],'public/js/messages/crudMessages.js')
    ;

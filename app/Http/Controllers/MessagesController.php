@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Http\MessageRequest;
 
 class MessagesController extends Controller
 {
@@ -28,12 +29,13 @@ class MessagesController extends Controller
    
     public function store(Request $request)
     {
+        sleep(2);
         $message = Message::create([
             'user_id'   =>  $request->user()->id,
             'room_id'   =>  request('room_id'),
             'message'   =>  htmlentities(request('message'))
         ]);
-        return view('public.messages.show', ['message' => $message]);
+        return view('public.messages.message', ['message' => $message]);
     }
 
     /**
@@ -42,9 +44,10 @@ class MessagesController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show($id)
     {
-        
+        $message = Message::where('id', $id)->first();
+        return view('public.messages.show',['message' => $message]);
     }
 
     /**
@@ -56,12 +59,13 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        sleep(2);
         $this->authorize("manipulate",Message::class);
         $message = Message::where('id', $id)->first();
         $message->update([
             'message'   => request('message'),
           ]);
-          return view('public.messages.show', ['message' => $message]);
+          return view('public.messages.message', ['message' => $message]);
         
     }
 
@@ -73,6 +77,7 @@ class MessagesController extends Controller
      */
     public function destroy($id)
     {
+      sleep(2);
       $this->authorize("manipulate",Message::class);
       $message = Message::where('id', $id)->first();
       $message->delete();

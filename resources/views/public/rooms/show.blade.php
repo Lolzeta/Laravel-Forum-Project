@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-center">
   <h1>Room {{$room->name}} from <a class="text-dark" href="/communities/{{$room->community->slug}}" title="Visit community">{{$room->community->name}}</a></h1>
 </div>
-<div class="card rounded-0" id="room" data-id-room="{{$room->id}}">
+<div class="card rounded-0 mb-2" id="room" data-id-room="{{$room->id}}">
         <div class="card-body rounded-0">
           <div class="row">
             <div class="col-1 d-flex align-items-center justify-content-center">
@@ -28,14 +28,13 @@
           </div>
         </div>
     </div>
-    <div id="messages">
-      @include('public.messages.paginationMessages')
-    </div>
+
     @auth
+    <div class=" mb-5">
     <form action="/messages" id="saveForm" method="post" novalidate>
       @csrf
-    <div class="form-group">
-        <label for="message">New message</label>
+    <div class="form-group" >
+        <label for="message">New reply</label>
         <textarea class="form-control {{$errors->has('message')?"is-invalid":""}}" id="message" name="message" rows="3" placeholder="You can reply here" required>{{isset($room)?$room->message:old('message')}}</textarea>
         @if($errors->has('message'))
         <div class="invalid-feedback">
@@ -43,9 +42,21 @@
         </div>
         @endif
     </div>
-    <button type="submit" class="btn btn-primary">Send Message</button>
-</form>
+    <button type="submit" class="btn btn-primary" id="send_message">Send Message</button>
+    </form>
+    </div>
 @endauth
+    <div class="border d-flex justify-content-center">
+      <h2>Replies</h2>
+    </div>
+    <div id="messages">
+      @include('public.messages.paginationMessages')
+    </div>
+    <div class="text-center">
+      <div class="spinner-border text-primary invisible" id="spinner_paginate" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
 @endsection
 @push('scripts')
 <script src="{{ mix('/js/messages/crudMessages.js')  }}" defer></script>

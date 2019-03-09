@@ -144,6 +144,7 @@ class RoomsController extends Controller
 
     public function paginateMessages($id,$count)
 	{
+        sleep(2);
         $room = Room::where('id', $id)->first();
         $messages = $room->messages->slice($count)->take(10);
         $view = "";
