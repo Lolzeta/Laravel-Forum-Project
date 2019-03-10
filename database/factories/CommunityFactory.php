@@ -8,6 +8,7 @@ $factory->define(App\Community::class, function (Faker $faker) {
         'user_id'     =>    random_int(1,20),
         'name'        =>    $name,
         'slug'        =>    str_slug($name,'-'),
-        'description' =>    $faker->text(300)
+        'description' =>    $faker->text(300),
+        'aka'   =>  $faker->word()
     ];
 });

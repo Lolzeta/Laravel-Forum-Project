@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="d-flex justify-content-center">
-  <h1>{{$community->name}}</h1>
+  <h1>{{$community->name}}({{$community->aka}})</h1>
 </div>
 
 <nav class="border">

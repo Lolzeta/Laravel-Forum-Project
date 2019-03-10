@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Community;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommunityRequest;
+use App\Notifications\CommunityCreated;
+use App\Notifications\CommunityEdited;
+use App\Notifications\CommunityDeleted;
 
 class CommunitiesController extends Controller
 {
@@ -50,8 +54,14 @@ class CommunitiesController extends Controller
             'name'        =>    request('name'),
             'user_id'     =>    $request->user()->id,
             'slug'        =>    str_slug(request('name'),'-'),
-            'description' =>    request('description')
+            'description' =>    request('description'),
+            'aka'   =>  request('aka')
           ]);
+        
+          $user = User::where('id',$community->user->id)->first();
+          $user->notify(new CommunityCreated($community));
+          $admin = User::where('role','admin')->first();
+          $admin->notify(new CommunityCreated($community));
           return redirect('/communities/'.$community->slug);
     }
 
@@ -93,12 +103,20 @@ class CommunitiesController extends Controller
      */
     public function update(CommunityRequest $request, Community $community)
     {
+        
         $community->update([
             'name'        =>    request('name'),
             'slug'        =>    str_slug(request('name'),'-'),
-            'description' =>    request('description')
+            'description' =>    request('description'),
+            'aka'   =>          request('aka')
         ]);
+        
+        $user = User::where('id',$community->user->id)->first();
+        $user->notify(new CommunityEdited($community));
+        $admin = User::where('role','admin')->first();
+        $admin->notify(new CommunityEdited($community));
         return redirect('/communities/'.$community->slug);
+        
     }
 
     /**
@@ -108,7 +126,11 @@ class CommunitiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Community $community)
-    {
+    {             
+        $user = User::where('id',$community->user->id)->first();
+        $user->notify(new CommunityDeleted($community));
+        $admin = User::where('role','admin')->first();
+        $admin->notify(new CommunityDeleted($community));
         $community->delete();
         return redirect('/communities/');
     }

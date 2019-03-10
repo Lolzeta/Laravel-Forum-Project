@@ -9,6 +9,17 @@
     @endif
 </div>
 
+
+<div class="form-group">
+    <label for="aka">Also Known As</label>
+    <input type="text" class="form-control {{$errors->has('aka')?"is-invalid":""}}" id="aka" name="aka" placeholder="Introduce the community's also known as" required value='{{isset($community)?$community->aka:old('aka')}}'>
+    @if($errors->has('aka'))
+    <div class="invalid-feedback">
+        {{$errors->first('aka')}}
+    </div>
+    @endif
+</div>
+
 <div class="form-group">
     <label for="description">Description</label>
     <textarea class="form-control {{$errors->has('description')?"is-invalid":""}}" id="description" name="description" rows="3" placeholder="Community description" required>{{isset($community)?$community->description:old('description')}}</textarea>

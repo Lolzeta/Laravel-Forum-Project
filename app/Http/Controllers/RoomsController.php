@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Room;
 use App\Community;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoomRequest;
+use App\Notifications\RoomCreated;
+use App\Notifications\RoomEdited;
+use App\Notifications\RoomDeleted;
 
 class RoomsController extends Controller
 {
@@ -64,6 +68,10 @@ class RoomsController extends Controller
           'description' =>    request('description'),
           'image'   =>        ($image?$image->store('images','public'):null)
         ]);
+        $user = User::where('id',$room->user->id)->first();
+        $user->notify(new RoomCreated($room));
+        $admin = User::where('role','admin')->first();
+        $admin->notify(new RoomCreated($room));
         return redirect('/rooms/'.$room->slug);
     }
 
@@ -120,8 +128,13 @@ class RoomsController extends Controller
         'description'  =>     request('description'),
         'image' =>  ($image?$image->store('images','public'):$room->image)
       ]);
-
+      $user = User::where('id',$room->user->id)->first();
+      $user->notify(new RoomEdited($room));
+      $admin = User::where('role','admin')->first();
+      $admin->notify(new RoomEdited($room));
       return redirect('/rooms/'.$room->slug);
+
+      
     }
 
     /**
@@ -132,6 +145,12 @@ class RoomsController extends Controller
      */
     public function destroy(Room $room)
     {
+        $user = User::where('id',$room->user->id)->first();
+        $user->notify(new RoomDeleted($room));
+        $admin = User::where('role','admin')->first();
+        $admin->notify(new RoomDeleted($room));
+        
+
         if($room->image){
             Storage::disk('public')->delete($room->image);
         }

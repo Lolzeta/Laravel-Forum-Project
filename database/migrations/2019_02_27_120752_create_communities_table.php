@@ -19,6 +19,7 @@ class CreateCommunitiesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('description');
+            $table->string('aka');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

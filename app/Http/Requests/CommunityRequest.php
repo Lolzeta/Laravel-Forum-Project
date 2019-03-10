@@ -26,6 +26,7 @@ class CommunityRequest extends FormRequest
         return [
           'name'                        =>      'required|min:3',
           'description'                 =>      'required|min:10',
+          'aka'                         =>      'required'
         ];
     }
 
@@ -35,6 +36,7 @@ class CommunityRequest extends FormRequest
       'name.min'                    =>      'The :attribute need to have three characters or more',
       'description.required'        =>      'The :attribute is needed',
       'description.min'             =>      'The :attribute need to have ten characters or more',
+      'aka.required'                =>      'The :attribute is needed'
       ];
     }
 
@@ -42,6 +44,7 @@ class CommunityRequest extends FormRequest
       return [
       'name'        =>    'community name',
       'description' =>    'community description',
+      'aka'         =>    'also known as'
     ];
     }
 }
