@@ -68,10 +68,11 @@ class RoomsController extends Controller
           'description' =>    request('description'),
           'image'   =>        ($image?$image->store('images','public'):null)
         ]);
-        $user = User::where('id',$room->user->id)->first();
-        $user->notify(new RoomCreated($room));
-        $admin = User::where('role','admin')->first();
-        $admin->notify(new RoomCreated($room));
+        
+      $user = User::where('id',$room->user->id)->first();
+      $user->notify(new RoomEdited($room));
+      $admin = User::where('role','admin')->first();
+      $admin->notify(new RoomEdited($room));
         return redirect('/rooms/'.$room->slug);
     }
 
@@ -145,10 +146,11 @@ class RoomsController extends Controller
      */
     public function destroy(Room $room)
     {
-        $user = User::where('id',$room->user->id)->first();
-        $user->notify(new RoomDeleted($room));
-        $admin = User::where('role','admin')->first();
-        $admin->notify(new RoomDeleted($room));
+        
+      $user = User::where('id',$room->user->id)->first();
+      $user->notify(new RoomEdited($room));
+      $admin = User::where('role','admin')->first();
+      $admin->notify(new RoomEdited($room));
         
 
         if($room->image){

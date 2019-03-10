@@ -7,7 +7,7 @@
   <h1>Our communities!</h1>
 </div>
 @forelse($communities as $community)
-
+  
     <div class="card mb-2">
         <div class="card-header bg-primary ">
             <b>{{ $community->name }}({{$community->aka}})</b>

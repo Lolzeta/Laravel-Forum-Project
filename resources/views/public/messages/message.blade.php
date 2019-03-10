@@ -2,9 +2,7 @@
  <div class="card rounded-0">
         <div class="card-body rounded-0">
           <div class="row">
-            <div class="col-1 d-flex align-items-center justify-content-center">
-              <h4>{{$message->votes->sum('valoration')}}</h4>
-            </div>
+            
 
             <div class="col">
             <h6 class="card-subtitle  text-muted">{{ $message->user->name}}</h6>
@@ -17,6 +15,7 @@
             <form action="/messages/{{ $message->id }}" data-action="show" data-messagetoshow="{{$message->id}}" method="post" class="mr-2 float-right">
                 @csrf
                 @method('get')
+                
             <button title="Show message" class="btn btn-primary btn-sm" type="submit" data-showbuttontospinner="{{$message->id}}"><i title="Show message" class="fas fa-eye" ></i></button>
             </form>
             @auth

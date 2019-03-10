@@ -1,0 +1,31 @@
+// Partials
+
+@import '_variables';
+
+//  Mixings
+%message{
+     padding: 10px;
+     color: black;
+}
+
+.correct{
+    @extend %message;
+    color:$green;
+}
+
+.incorrect{
+    @extend %message;
+    color:$red;
+}
+
+// Herencia
+
+.error{
+    @extend .incorrect;
+    font-weight: bold;
+}
+
+
+
+
+

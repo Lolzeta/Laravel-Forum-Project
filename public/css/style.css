@@ -1,0 +1,20 @@
+.incorrect,
+.error,
+.correct {
+  padding: 10px;
+  color: black;
+}
+
+.correct {
+  color: #38c172;
+}
+
+.incorrect,
+.error {
+  color: #e3342f;
+}
+
+.error {
+  font-weight: bold;
+}
+

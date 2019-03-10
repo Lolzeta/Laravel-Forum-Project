@@ -26,11 +26,5 @@ class DatabaseSeeder extends Seeder
                 $votes->random(random_int(0,300))
             );
         });
-        
-        $messages->each(function(App\Message $message) use ($votes){
-            $message->votes()->attach(
-                $votes->random(random_int(0,300))
-            );
-        });
     }
 }
