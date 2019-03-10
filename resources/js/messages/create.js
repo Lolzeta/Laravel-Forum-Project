@@ -3,7 +3,7 @@ $(function(){
     creation.submit(function(e){
         e.preventDefault();
         let button = $('#send_message');
-        button.attr('disabled');
+        button.attr('disabled','true');
         button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
         axios.post('/messages/', {
           room_id : $("#room").attr('data-id-room'),  
@@ -19,6 +19,9 @@ $(function(){
             });
             $("form[data-action='edit']").last().submit(function(e){
                 editEvent(e);
+            });
+            $("form[data-action='show']").last().submit(function(e){
+                showEvent(e);
             });
         }).catch(function (error) {
             console.log(error);

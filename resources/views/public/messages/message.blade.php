@@ -14,10 +14,10 @@
             <div class="col-2">
             <div>
             
-            <form action="/messages/{{ $message->id }}" id="show-form" data-action="show" data-messagetoshow="{{$message->id}}" method="post" class="mr-2 float-right">
+            <form action="/messages/{{ $message->id }}" data-action="show" data-messagetoshow="{{$message->id}}" method="post" class="mr-2 float-right">
                 @csrf
                 @method('get')
-            <button title="Show message" class="btn btn-primary btn-sm" type="submit" id="show-button"><i title="Show message" class="fas fa-eye" ></i></button>
+            <button title="Show message" class="btn btn-primary btn-sm" type="submit" data-showbuttontospinner="{{$message->id}}"><i title="Show message" class="fas fa-eye" ></i></button>
             </form>
             @auth
             @can('manipulate',$message)

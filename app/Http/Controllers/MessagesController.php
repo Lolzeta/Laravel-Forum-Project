@@ -45,7 +45,7 @@ class MessagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   sleep(2);
         $message = Message::where('id', $id)->first();
         return view('public.messages.show',['message' => $message]);
     }

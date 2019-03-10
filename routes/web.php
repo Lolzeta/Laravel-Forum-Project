@@ -31,3 +31,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Route for Community entities
 Route::resource('/communities', 'CommunitiesController');
+
+// Route for Votes entities
+Route::get('/rooms/{id}/vote/1', 'VotesController@up_room');
+Route::get('/rooms/{id}/vote/-1','VotesController@down_room');

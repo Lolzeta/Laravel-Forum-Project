@@ -9,7 +9,8 @@
 <div class="card rounded-0 mb-2" id="room" data-id-room="{{$room->id}}">
         <div class="card-body rounded-0">
           <div class="row">
-            <div class="col-1 d-flex align-items-center justify-content-center">
+            <div class="col-2 d-flex align-items-center justify-content-center">
+            @include('public.rooms.partials.voteButtons')
               <h4>{{$room->votes->sum('valoration')}}</h4>
             </div>
             
@@ -61,3 +62,4 @@
 @push('scripts')
 <script src="{{ mix('/js/messages/crudMessages.js')  }}" defer></script>
 @endpush
+

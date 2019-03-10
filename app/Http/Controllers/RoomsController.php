@@ -107,7 +107,7 @@ class RoomsController extends Controller
      */
     public function update(RoomRequest $request, Room $room)
     {
-        dd($errors);
+        
         $image = $request->file('image');
 
         if($image && $room->image){
@@ -116,7 +116,7 @@ class RoomsController extends Controller
       $room->update([
         'name'         =>     request('name'),
         'slug'         =>     str_slug(request('name'),'-'),
-        'community_id'     => request('community_id'),
+        'community_id'     => request('community'),
         'description'  =>     request('description'),
         'image' =>  ($image?$image->store('images','public'):$room->image)
       ]);

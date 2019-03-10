@@ -5,6 +5,7 @@ $(function(){
 });
 
   function deleteEvent(event){
+    $(`#show-message`).modal('hide');
     event.preventDefault();
     let form = $(event.target);
     let idMessage = form.attr("data-messagetodelete");
@@ -12,9 +13,11 @@ $(function(){
     let accept = $("#accept-delete");
     accept.click(function(){
       accept.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
+      accept.attr('disabled','true');
       axios.delete(`/messages/${idMessage}`)
       .then(function(respond){
         accept.html('YES');
+        accept.removeAttr('disabled');
         closeModal('delete-confirmation');
         accept.off('click');
         $(`div[data-idMessage='${idMessage}']`).remove();

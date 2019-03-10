@@ -21,9 +21,18 @@ document.addEventListener('DOMContentLoaded',function(){
                     execute = false;
                 }
                 $("#messages").append(response.data);
+                $("#messages  form[data-action='delete']").slice(count).submit(function(e){
+                    deleteEvent(e);
+                });
+                $("#messages  form[data-action='edit']").slice(count).submit(function(e){
+                    editEvent(e);
+                });
+                $("#messages  form[data-action='show']").slice(count).submit(function(e){
+                    showEvent(e);
+                });
                 count += 10;
                 $('#spinner_paginate').addClass('invisible');
-            }).catch(function (error) {
+                }).catch(function (error) {
                 console.log(error);
               }).then(function(){
                 console.log('paginated');
