@@ -33,8 +33,9 @@ class MessagesController extends Controller
         $message = Message::create([
             'user_id'   =>  $request->user()->id,
             'room_id'   =>  request('room_id'),
-            'message'   =>  htmlentities(request('message'))
+            'message'   =>  request('message')
         ]);
+        
         return view('public.messages.message', ['message' => $message]);
     }
 
@@ -86,7 +87,6 @@ class MessagesController extends Controller
 
     public function returnMessage($id){
         $message = Message::where('id', $id)->first();
-        $message->votes()->detach();
         return $message->message;
     }
 }

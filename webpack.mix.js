@@ -21,5 +21,6 @@ mix.js('resources/js/app.js', 'public/js')
       'resources/js/messages/delete.js',
       'resources/js/messages/edit.js',
       'resources/js/messages/show.js',
+      'resources/js/messages/quill.js',
     ],'public/js/messages/crudMessages.js')
    ;

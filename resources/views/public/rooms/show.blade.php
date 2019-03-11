@@ -34,15 +34,11 @@
     <div class=" mb-5">
     <form action="/messages" id="saveForm" method="post" novalidate>
       @csrf
-    <div class="form-group" >
-        <label for="message">New reply</label>
-        <textarea class="form-control {{$errors->has('message')?"is-invalid":""}}" id="message" name="message" rows="3" placeholder="You can reply here" required>{{isset($room)?$room->message:old('message')}}</textarea>
-        @if($errors->has('message'))
-        <div class="invalid-feedback">
-          {{$errors->first('message')}}
-        </div>
-        @endif
-    </div>
+      <div id="editor">
+        <p>Hello World!</p>
+        <p>Some initial <strong>bold</strong> text</p>
+        <p><br></p>
+      </div>
     <button type="submit" class="btn btn-primary" id="send_message">Send Message</button>
     </form>
     </div>

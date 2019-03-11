@@ -6,7 +6,7 @@
 
             <div class="col">
             <h6 class="card-subtitle  text-muted">{{ $message->user->name}}</h6>
-            <p class="card-text">{{ $message->message }}</p>
+            <div class="card-text">{!! $message->message !!}</div>
             </div>
 
             <div class="col-2">
