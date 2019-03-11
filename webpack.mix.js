@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .sass('resources/sass/style.scss', 'public/css')
    .js('resources/js/validations/registerValidation.js', 'public/js/validations')
+   .js('resources/js/modernizr/videoCheck.js','public/js/modernizr')
     .babel([
       'resources/js/messages/create.js',
       'resources/js/messages/paginate.js',

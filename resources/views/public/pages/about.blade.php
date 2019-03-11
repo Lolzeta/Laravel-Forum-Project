@@ -22,4 +22,16 @@ TestForums is a forum that was created for a project. This project includes:
 </ul>
 </div>
 
+We did this with patient, a lot of stress and with this song.
+<div id="video">
+
+</div>
+
+
 @endsection
+
+@push('scripts')
+<script src="{{ mix('/js/modernizr/videoCheck.js')  }}" defer></script>
+@endpush
+
+
