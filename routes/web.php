@@ -35,3 +35,10 @@ Route::resource('/communities', 'CommunitiesController');
 // Route for Votes entities
 Route::get('/rooms/{id}/vote/1', 'VotesController@up_room');
 Route::get('/rooms/{id}/vote/-1','VotesController@down_room');
+
+// Route for Users
+
+Route::get('/users/{user}', 'UsersController@show');
+Route::get('/users/{user}/edit', 'UsersController@edit');
+Route::patch('/users/{user}', 'UsersController@update');
+Route::get('/users','UsersController@list');

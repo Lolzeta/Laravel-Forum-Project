@@ -282,7 +282,7 @@ function check_errors() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/javier/Sites/testforums/resources/js/validations/registerValidation.js */"./resources/js/validations/registerValidation.js");
+module.exports = __webpack_require__(/*! /home/lolzeta/Sites/testforums/resources/js/validations/registerValidation.js */"./resources/js/validations/registerValidation.js");
 
 
 /***/ })

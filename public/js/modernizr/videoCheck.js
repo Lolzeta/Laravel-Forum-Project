@@ -190,7 +190,7 @@ if (Modernizr.video) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/javier/Sites/testforums/resources/js/modernizr/videoCheck.js */"./resources/js/modernizr/videoCheck.js");
+module.exports = __webpack_require__(/*! /home/lolzeta/Sites/testforums/resources/js/modernizr/videoCheck.js */"./resources/js/modernizr/videoCheck.js");
 
 
 /***/ })

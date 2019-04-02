@@ -39,7 +39,7 @@
         <p>Some initial <strong>bold</strong> text</p>
         <p><br></p>
       </div>
-    <button type="submit" class="btn btn-primary" id="send_message">Send Message</button>
+    <button type="submit" class="btn btn-primary mt-2" id="send_message">Send Message</button>
     </form>
     </div>
 @endauth
