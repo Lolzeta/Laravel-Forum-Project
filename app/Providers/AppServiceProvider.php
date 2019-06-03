@@ -14,11 +14,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(UrlGenerator $url)
+    public function boot()
     {
-        if(env('REDIRECT_HTTPS')){
-            $url->forceSchema('https');
-        }
+        
 
         Room::observe(RoomObserver::class);
         Community::observe(CommunityObserver::class);
@@ -31,8 +29,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if(env('REDIRECT_HTTPS')){
-            $this->app['request']->server->set('HTTPS',true);
-        }
+        
     }
 }
