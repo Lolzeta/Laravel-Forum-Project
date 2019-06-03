@@ -23,7 +23,7 @@ $(function () {
         showEvent(e);
       });
       quill.root.innerHTML = "";
-    }).catch(function (error) {
+    })["catch"](function (error) {
       console.log(error);
     }).then(function () {
       alert('The message has been created');
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
           });
           count += 10;
           $('#spinner_paginate').addClass('invisible');
-        }).catch(function (error) {
+        })["catch"](function (error) {
           console.log(error);
         }).then(function () {
           console.log('paginated');
@@ -88,13 +88,13 @@ function deleteEvent(event) {
   accept.click(function () {
     accept.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>');
     accept.attr('disabled', 'true');
-    axios.delete("/messages/".concat(idMessage)).then(function (respond) {
+    axios["delete"]("/messages/".concat(idMessage)).then(function (respond) {
       accept.html('YES');
       accept.removeAttr('disabled');
       closeModal('delete-confirmation');
       accept.off('click');
       $("div[data-idMessage='".concat(idMessage, "']")).remove();
-    }).catch(function (error) {
+    })["catch"](function (error) {
       console.log(error);
     }).then(function () {
       alert('The message has been deleted');
@@ -146,7 +146,7 @@ function editEvent(event) {
       $("form[data-messagetoshow=".concat(idMessage, "]")).submit(function (e) {
         showEvent(e);
       });
-    }).catch(function (error) {
+    })["catch"](function (error) {
       console.log(error);
     }).then(function () {
       alert('The message has been edited');
@@ -179,7 +179,7 @@ function showEvent(e) {
     $("form[data-messagetodelete=".concat(idMessage, "]")).submit(function (e) {
       deleteEvent(e);
     });
-  }).catch(function (error) {
+  })["catch"](function (error) {
     console.log(error);
   }).then(function () {
     alert('The message has been showed');
