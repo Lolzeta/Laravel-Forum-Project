@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
     {   factory(App\User::class,20)->create();
         factory(App\Community::class,10)->create();
         $rooms = factory(App\Room::class,40)->create();
-        $messages = factory(App\Message::class,600)->create();
-        $votes = factory(App\Vote::class,300)->create();
+        $messages = factory(App\Message::class,30)->create();
+        $votes = factory(App\Vote::class,50)->create();
         factory(App\User::class)->create([
             'name'  => 'admin',
             'role'  => 'admin',
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $rooms->each(function(App\Room $room) use ($votes){
             $room->votes()->attach(
-                $votes->random(random_int(0,300))
+                $votes->random(random_int(0,50))
             );
         });
     }
