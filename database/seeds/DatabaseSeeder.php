@@ -10,11 +10,11 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   factory(App\User::class,20)->create();
-        factory(App\Community::class,10)->create();
-        $rooms = factory(App\Room::class,40)->create();
-        $messages = factory(App\Message::class,30)->create();
-        $votes = factory(App\Vote::class,50)->create();
+    {   factory(App\User::class,2)->create();
+        factory(App\Community::class,2)->create();
+        $rooms = factory(App\Room::class,4)->create();
+        $messages = factory(App\Message::class,10)->create();
+        $votes = factory(App\Vote::class,10)->create();
         factory(App\User::class)->create([
             'name'  => 'admin',
             'role'  => 'admin',
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $rooms->each(function(App\Room $room) use ($votes){
             $room->votes()->attach(
-                $votes->random(random_int(0,50))
+                $votes->random(random_int(0,10))
             );
         });
     }
